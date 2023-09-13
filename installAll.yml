@@ -1,3 +1,5 @@
+---
+
 - hosts: lm-furkanozturk@10.0.2.7
   become: true
   tasks:
@@ -15,6 +17,16 @@
         name: libapache2-mod-php
         state: latest
 
+    - name: copy website to server
+      tags: apache,apache2,ubuntu
+      copy:
+       src: /home/furkanozturk/Website
+       dest: /var/www/html
+       owner: root
+       group: root
+       mode: 0644
+
+
 - hosts: furkanozturk@10.0.2.6
   become: true
   tasks:
@@ -22,6 +34,6 @@
       dnf:
         update_cache: yes
 
-    - name: install apache2 package
+    - name: install mariaDB
       dnf:
-        name: httpd
+        name: mariadb
