@@ -13,9 +13,3 @@
     package_manager:
       name: "{{ apache_package }}"
       state: latest
-
-
-
-  - name: install apache2 package
-    dnf:
-      name: httpd
