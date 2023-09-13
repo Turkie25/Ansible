@@ -1,15 +1,29 @@
 ---
 
-- hosts: all
+- hosts: lm-furkanozturk@10.0.2.7
   become: true
   tasks:
+    - name: update repository index
+      apt:
+        update_cache: yes
 
-  - name: update repository index
-    package_manager:
-      name: "{{ ansible_pkg_mgr }}"
-      update_cache: yes
+    - name: install apache2 package
+      apt:
+        name: apache2
+        state: latest
 
-  - name: install apache2 package
-    package_manager:
-      name: "{{ apache_package }}"
-      state: latest
+    - name: add php support
+      apt:
+        name: libapache2-mod-php
+        state: latest
+
+- hosts: furkanozturk@10.0.2.6
+  become: true
+  tasks:
+    - name: update repository index
+      dnf:
+        update_cache: yes
+
+    - name: install apache2 package
+      dnf:
+        name: httpd
