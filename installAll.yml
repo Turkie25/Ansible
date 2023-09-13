@@ -1,0 +1,17 @@
+---
+
+- hosts: lm-furkanozturk@10.0.2.7
+  become: true
+  tasks:
+
+  - name: install apache2 package
+    apt:
+      name: apache2
+
+- hosts: furkanozturk@10.0.2.6
+  become: true
+  tasks:
+
+  - name: install apache2 package
+    dnf:
+      name: httpd
