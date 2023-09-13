@@ -1,0 +1,9 @@
+---
+
+- hosts: furkanozturk@10.0.2.6
+  become: true
+  tasks:
+
+  - name: install apache2 package
+    dnf:
+      name: httpd
